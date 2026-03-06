@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime
-from backend.app.extensions import db
+from ..extensions import db
 from sqlalchemy.dialects.postgresql import UUID
 
 class SiteSettings(db.Model):
