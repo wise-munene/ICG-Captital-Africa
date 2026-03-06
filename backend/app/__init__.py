@@ -1,6 +1,7 @@
 from flask import Flask
 from .extensions import db, migrate, jwt
 from .config import Config
+from backend.models import*
 
 def create_app():
     app= Flask(__name__)
