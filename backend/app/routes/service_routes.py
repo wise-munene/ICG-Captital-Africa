@@ -1,33 +1,38 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, jsonify
 from ..models.service import Service
 
-service_bp = Blueprint('services', __name__,url_prefix='/api/services') 
+service_bp = Blueprint('services', __name__, url_prefix='/api/services')
 
-@service_bp.route('/api/services', methods=['GET'])
+
+@service_bp.route('/', methods=['GET'])
 def get_services():
     services = Service.query.all()
 
     data = [
-       {
+        {
             'id': str(service.id),
-            'name': service.name,
+            'title': service.title,   # change from name to title if your model uses title
             'description': service.description,
             'slug': service.slug,
             'category': service.category
-       }
-       for service in services
-   ]
+        }
+        for service in services
+    ]
+
     return jsonify(data), 200
 
 
 @service_bp.route('/<uuid:service_id>', methods=['GET'])
 def get_service(service_id):
+
     service = Service.query.get_or_404(service_id)
+
     data = {
         'id': str(service.id),
-        'name': service.name,
+        'title': service.title,
         'description': service.description,
         'slug': service.slug,
         'category': service.category
     }
+
     return jsonify(data), 200

@@ -3,7 +3,7 @@ from datetime import datetime
 from ..extensions import db
 from sqlalchemy.dialects.postgresql import UUID
 
-class SiteSettings(db.Model):
+class SiteSetting(db.Model):
     __tablename__ = 'site_settings'  #explicitly set table name
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     site_name = db.Column(db.String(150), nullable=False)
