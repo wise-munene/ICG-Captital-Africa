@@ -27,7 +27,7 @@ def login():
     if not user:
         return jsonify({'message': 'User not found'}), 404
     
-    if not bcrypt.check_password_hash(user.password, data['password']):
+    if not bcrypt.check_password_hash(user.password_hash, data['password']):
         return jsonify({'message': 'Incorrect password'}), 401
     
     access_token = create_access_token(identity=str(user.id))
