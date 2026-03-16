@@ -44,7 +44,7 @@ function Home() {
 
       {/* SERVICES SECTION */}
 
-      <section className="py-20 px-10 bg-white">
+      <section className="max-w-6xl mx-auto px-6 py-24">
 
         <h2 className="text-3xl font-bold text-center mb-12">
           Our Services
