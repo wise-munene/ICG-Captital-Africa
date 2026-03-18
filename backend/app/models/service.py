@@ -14,6 +14,7 @@ class Service(db.Model):
     slug = db.Column(db.String(200), unique=True, nullable=False) #slug is means URL friendly version of title
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
+    
     def __repr__(self):
         return f'<Service {self.title}>'
     

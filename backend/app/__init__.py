@@ -5,6 +5,7 @@ from .routes.service_routes import service_bp
 from .extensions import bcrypt, jwt, db, migrate
 from .routes.auth_routes import auth_bp
 from flask_cors import CORS
+from .routes.quote_routes import quote_bp
 
 from .models import *
 
@@ -16,6 +17,7 @@ def create_app():
     app.config.from_object(Config)
     app.register_blueprint(service_bp) # Register the service blueprint
     app.register_blueprint(auth_bp) # Register the auth blueprint
+    app.register_blueprint(quote_bp) # Register the quote blueprint
 
     db.init_app(app)
     migrate.init_app(app, db)

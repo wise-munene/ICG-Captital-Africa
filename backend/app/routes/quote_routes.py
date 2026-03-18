@@ -4,7 +4,7 @@ from ..extensions import db
 
 quote_bp = Blueprint('quotes', __name__, url_prefix='/api/quotes')  # this helps to avoid route conflicts and makes it clear that these routes are for quotes
 
-@quote_bp.route('/', methods=['POST'])
+@quote_bp.route('', methods=['POST'])
 def create_quote():
     data = request.get_json()
 
