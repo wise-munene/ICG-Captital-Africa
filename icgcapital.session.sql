@@ -54,3 +54,6 @@ with app.app_context():
 
     db.session.commit()
     print("Services seeded successfully!")
+
+
+SELECT* FROM quotes;

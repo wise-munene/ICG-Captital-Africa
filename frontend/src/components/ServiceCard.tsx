@@ -1,3 +1,5 @@
+import { TrendingUp } from "lucide-react"
+
 type Service = {
   id: string
   title: string
@@ -5,21 +7,37 @@ type Service = {
   category: string
 }
 
-function ServiceCard({ service }: { service: Service }) {
-  return (
-    <div className="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition">
+type Props = {
+  service: Service
+}
 
-      <h3 className="text-lg font-semibold text-slate-900 mb-2">
+function ServiceCard({ service }: Props) {
+
+  return (
+    <div className="group relative bg-white p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 overflow-hidden">
+
+      {/* TOP ACCENT LINE */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-blue-600 opacity-0 group-hover:opacity-100 transition"></div>
+
+      {/* ICON */}
+      <div className="w-14 h-14 flex items-center justify-center rounded-lg bg-blue-100 text-blue-600 mb-6">
+        <TrendingUp size={28} />
+      </div>
+
+      {/* TITLE */}
+      <h3 className="text-xl font-semibold text-gray-900 mb-3">
         {service.title}
       </h3>
 
-      <p className="text-gray-600 text-sm mb-4">
+      {/* DESCRIPTION */}
+      <p className="text-gray-600 leading-relaxed">
         {service.description}
       </p>
 
-      <span className="text-xs text-blue-600 font-medium">
-        {service.category}
-      </span>
+      {/* LEARN MORE */}
+      <div className="mt-6 text-blue-600 font-medium group-hover:underline">
+        Learn more →
+      </div>
 
     </div>
   )

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import {Link} from "react-router-dom"
 import { getServices } from "../services/serviceAPI"
 import ServiceCard from "../components/ServiceCard"
 
@@ -42,9 +43,12 @@ function Home() {
             and investment facilitation across emerging markets.
           </p>
 
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition">
-            Get a Quote
-          </button>
+
+          <Link to= {`/quote/${services[0]?.id}`}>
+            <button className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition">
+              Get a Quote
+            </button>
+          </Link>
 
         </div>
 
