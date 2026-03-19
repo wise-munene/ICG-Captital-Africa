@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getServices } from "../services/serviceAPI"
-import { getQuotes } from "../services/quoteAPI"
+import { createQuote } from "../services/quoteAPI"
 
 type Service = {
   id: string
@@ -37,7 +37,7 @@ function Quote() {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
 
-    await getQuotes(form)
+    createQuote(form)
 
     alert("Quote request submitted!")
   }

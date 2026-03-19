@@ -1,5 +1,12 @@
 import axios from "../api/axiosClient"
 
+
+//create a quote request, the status will be pending by default
+export const createQuote = async (data:any) => {
+  const response = await axios.post("/quotes", data)
+  return response.data
+}
+
 //the below is for user to create a quote request, the status will be pending by default
 export const getQuotes = async () => {
   const response = await axios.get("/quotes")

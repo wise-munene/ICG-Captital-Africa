@@ -1,3 +1,4 @@
+
 import { useState } from "react"
 import { loginUser } from "../services/authAPI"
 import { useAuth } from "../hooks/useAuth"
@@ -9,6 +10,8 @@ function Login() {
     email: "",
     password: ""
   })
+
+  const [loading, setLoading] = useState(false)
 
   const { login } = useAuth()
   const navigate = useNavigate()
@@ -22,6 +25,7 @@ function Login() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
+    setLoading(true)
 
     try {
       const res = await loginUser(form)
@@ -29,16 +33,21 @@ function Login() {
       // save user + token
       login(res.user, res.access_token)
 
-      // redirect to admin
-      navigate("/admin")
+      // role-based redirect
+      if (res.user?.role === "admin") {
+        navigate("/admin")
+      } else {
+        navigate("/")
+      }
 
     } catch (err) {
-      alert("Login failed")
+      alert("Invalid email or password")
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
-
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
 
       <form
@@ -47,12 +56,14 @@ function Login() {
       >
 
         <h2 className="text-2xl font-bold text-center">
-          Admin Login
+          Login
         </h2>
 
         <input
           name="email"
+          type="email"
           placeholder="Email"
+          required
           onChange={handleChange}
           className="w-full border p-3 rounded"
         />
@@ -61,12 +72,17 @@ function Login() {
           name="password"
           type="password"
           placeholder="Password"
+          required
           onChange={handleChange}
           className="w-full border p-3 rounded"
         />
 
-        <button className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700">
-          Login
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 disabled:opacity-50"
+        >
+          {loading ? "Logging in..." : "Login"}
         </button>
 
       </form>
@@ -76,3 +92,4 @@ function Login() {
 }
 
 export default Login
+
