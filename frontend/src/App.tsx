@@ -9,6 +9,7 @@ import About from "./pages/About"
 import Quote from "./pages/Quote"
 import Login from "./pages/Login"
 import AdminDashboard from "./pages/AdminDashboard"
+import Contact from "./pages/Contact"
 
 function ProtectedRoute({ children }: any) {
   const { user } = useAuth()
@@ -38,6 +39,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
 
     </BrowserRouter>
