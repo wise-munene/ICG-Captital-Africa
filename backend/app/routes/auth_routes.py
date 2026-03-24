@@ -31,7 +31,15 @@ def login():
         return jsonify({'message': 'Incorrect password'}), 401
     
     access_token = create_access_token(identity=str(user.id))
-    return jsonify({'access_token': access_token}), 200
+    return jsonify({
+        'user': {
+            'id': str(user.id),
+            'name': user.name,
+            'email': user.email,
+            'role': user.role
+        },
+        'access_token': access_token
+    }), 200
 
 @auth_bp.route('/profile', methods=['GET'])
 @jwt_required()

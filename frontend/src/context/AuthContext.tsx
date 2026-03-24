@@ -8,12 +8,14 @@ export function AuthProvider({ children }: any) {
 
   //restore user from localStorage on app load
   useEffect(() => {
-    const storedUser = localStorage.getItem("user")
+  const storedUser = localStorage.getItem("user")
 
-    if (storedUser) {
-      setUser(JSON.parse(storedUser))
-    }
-  }, [])
+  if (storedUser && storedUser !== "undefined") {
+    setUser(JSON.parse(storedUser))
+  } else {
+    setUser(null)
+  }
+}, [])
 
   //login function
   const login = (userData: any, token: string) => {

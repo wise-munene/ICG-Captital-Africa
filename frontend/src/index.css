@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Smooth font + base styling */
+body {
+  @apply bg-gray-50 text-gray-800 antialiased;
+}
+
+/* Better headings */
+h1, h2, h3 {
+  @apply tracking-tight;
+}

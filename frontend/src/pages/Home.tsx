@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react"
-import {Link} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { getServices } from "../services/serviceAPI"
 import ServiceCard from "../components/ServiceCard"
+
+
+import heroImage from "../assets/_.jpeg"
+import nairobiImage from "../assets/Nairobi.jpeg"
 
 type Service = {
   id: string
@@ -13,10 +17,11 @@ type Service = {
 function Home() {
 
   const [services, setServices] = useState<Service[]>([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     getServices().then((data) => {
-      setServices(data.slice(0,6))
+      setServices(data.slice(0, 6))
     })
   }, [])
 
@@ -24,10 +29,9 @@ function Home() {
     <div>
 
       {/* HERO SECTION */}
-
       <section
         className="relative h-screen flex items-center justify-center text-center bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/src/assets/_.jpeg')" }}
+        style={{ backgroundImage: `url(${heroImage})` }}
       >
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30"></div>
@@ -43,20 +47,20 @@ function Home() {
             and investment facilitation across emerging markets.
           </p>
 
-
-          <Link to= {`/quote/${services[0]?.id}`}>
-            <button className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition">
-              Get a Quote
-            </button>
-          </Link>
+          {/* SAFE BUTTON (NO UNDEFINED ERROR) */}
+          {services.length > 0 && (
+            <Link to={`/quote/${services[0].id}`}>
+              <button className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition">
+                Get a Quote
+              </button>
+            </Link>
+          )}
 
         </div>
 
       </section>
 
-
       {/* SERVICES SECTION */}
-
       <section className="bg-white py-20">
 
         <div className="max-w-6xl mx-auto px-6">
@@ -65,7 +69,7 @@ function Home() {
             Our Services
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid sm: grid-cols-2 lg:grid-cols-3 gap-8">
 
             {services.map((service) => (
               <ServiceCard key={service.id} service={service} />
@@ -77,9 +81,7 @@ function Home() {
 
       </section>
 
-
       {/* WHY CHOOSE US */}
-
       <section className="bg-gray-50 py-20">
 
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
@@ -105,22 +107,18 @@ function Home() {
           </div>
 
           <div>
-
             <img
-              src="/src/assets/Nairobi.jpeg"
+              src={nairobiImage}
               className="rounded-xl shadow-xl w-full object-cover"
             />
-
           </div>
 
         </div>
 
       </section>
 
-
       {/* CALL TO ACTION */}
-
-      <section className="bg-blue-600 py-20 text-center text-white">
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 py-20 text-center text-white">
 
         <div className="max-w-3xl mx-auto px-6">
 
@@ -129,12 +127,26 @@ function Home() {
           </h2>
 
           <p className="mb-8 text-blue-100">
-            Contact ICG Capital Africa today to discuss your next investment opportunity.
+            Partner with ICG Capital Africa to unlock growth, capital, and strategic opportunities across Africa.
           </p>
 
-          <button className="bg-white text-blue-600 px-8 py-3 rounded-md font-medium hover:bg-gray-100 transition">
-            Contact Us
-          </button>
+          <div className="flex justify-center gap-4">
+
+            <button
+              onClick={() => navigate("/contact")}
+              className="bg-white text-blue-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition"
+            >
+              Contact Us
+            </button>
+
+            <button
+              onClick={() => navigate("/services")}
+              className="border border-white px-6 py-3 rounded-md hover:bg-white hover:text-blue-700 transition"
+            >
+              View Services
+            </button>
+
+          </div>
 
         </div>
 

@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <nav className="bg-slate-900 text-white px-8 py-4 flex justify-between items-center">
 
-      <h1 className="text-xl font-bold tracking-wide">
+      <h1 className="text-xl font-semibold tracking-light text-gray-200">
         ICG Capital Africa
       </h1>
 

@@ -9,6 +9,7 @@ from app.seeds.seed_settings import seed_settings
 app = create_app()
 
 with app.app_context():
+    
 
     seed_services()
     seed_users()

@@ -29,16 +29,16 @@ function Login() {
 
     try {
       const res = await loginUser(form)
+      console.log('login response:', res)
 
       // save user + token
+      if(!res.user || !res.access_token){
+        alert(res.message || 'Login failed')
+        return
+      }
       login(res.user, res.access_token)
 
-      // role-based redirect
-      if (res.user?.role === "admin") {
-        navigate("/admin")
-      } else {
-        navigate("/")
-      }
+     navigate("/admin")
 
     } catch (err) {
       alert("Invalid email or password")

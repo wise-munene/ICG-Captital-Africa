@@ -1,4 +1,12 @@
-import { TrendingUp } from "lucide-react"
+import {
+  TrendingUp,
+  Briefcase,
+  BarChart,
+  Users,
+  Building2,
+  Layers
+} from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 type Service = {
   id: string
@@ -11,32 +19,58 @@ type Props = {
   service: Service
 }
 
+// 🔥 ICON MAPPING (DIFFERENT ICONS)
+const iconMap: any = {
+  Finance: <TrendingUp size={26} />,
+  Advisory: <Briefcase size={26} />,
+  Strategy: <BarChart size={26} />,
+  HR: <Users size={26} />,
+  Investment: <Building2 size={26} />,
+  Management: <Layers size={26} />,
+}
+
 function ServiceCard({ service }: Props) {
 
+  const navigate = useNavigate()
+
   return (
-    <div className="group relative bg-white p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 overflow-hidden">
+    <div
+      onClick={() => navigate(`/quote/${service.id}`)}
+      className="group relative bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden"
+    >
 
-      {/* TOP ACCENT LINE */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-blue-600 opacity-0 group-hover:opacity-100 transition"></div>
+      {/* GRADIENT BACKGROUND HOVER */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
 
-      {/* ICON */}
-      <div className="w-14 h-14 flex items-center justify-center rounded-lg bg-blue-100 text-blue-600 mb-6">
-        <TrendingUp size={28} />
-      </div>
+      {/* CONTENT */}
+      <div className="relative z-10">
 
-      {/* TITLE */}
-      <h3 className="text-xl font-semibold text-gray-900 mb-3">
-        {service.title}
-      </h3>
+        {/* ICON */}
+        <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-blue-100 text-blue-600 mb-4 group-hover:scale-110 transition">
+          {iconMap[service.category] || <TrendingUp size={26} />}
+        </div>
 
-      {/* DESCRIPTION */}
-      <p className="text-gray-600 leading-relaxed">
-        {service.description}
-      </p>
+        {/* CATEGORY */}
+        <p className="text-xs uppercase tracking-wide text-blue-600 mb-1">
+          {service.category}
+        </p>
 
-      {/* LEARN MORE */}
-      <div className="mt-6 text-blue-600 font-medium group-hover:underline">
-        Learn more →
+        {/* TITLE */}
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          {service.title}
+        </h3>
+
+        {/* DESCRIPTION */}
+        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+          {service.description}
+        </p>
+
+        {/* CTA */}
+        <div className="mt-5 flex items-center text-blue-600 text-sm font-medium">
+          Request Quote
+          <span className="ml-1 group-hover:ml-2 transition-all">→</span>
+        </div>
+
       </div>
 
     </div>

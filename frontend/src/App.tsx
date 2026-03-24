@@ -10,10 +10,11 @@ import Quote from "./pages/Quote"
 import Login from "./pages/Login"
 import AdminDashboard from "./pages/AdminDashboard"
 import Contact from "./pages/Contact"
+import Footer from "./components/Footer"
 
 function ProtectedRoute({ children }: any) {
   const { user } = useAuth()
-  return user ? children : <Navigate to="/login" />
+  return user ? children : <Navigate to="/admin-login" />
 }
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
         <Route path="/quote" element={<Quote />} />
         <Route path="/quote/:serviceId" element={<Quote />} />
 
-        <Route path="/login" element={<Login />} />
+        <Route path="/admin-login" element={<Login />} />
 
         <Route
           path="/admin"
@@ -41,7 +42,7 @@ function App() {
         />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-
+          <Footer />
     </BrowserRouter>
   )
 }

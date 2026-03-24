@@ -4,7 +4,8 @@ from app.models.service import Service
 
 def seed_services():
 
-    Service.query.delete()  # Clear existing data
+    db.session.query(Service).delete()  # Remove existing data
+ 
 
     services = [
 
