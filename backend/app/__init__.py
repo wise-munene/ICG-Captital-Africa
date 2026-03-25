@@ -9,24 +9,19 @@ from .routes.quote_routes import quote_bp
 
 from .models import *
 
+
 def create_app():
     app = Flask(__name__)
 
     CORS(app)
     app.config.from_object(Config)
+    app.register_blueprint(service_bp) # Register the service blueprint
+    app.register_blueprint(auth_bp) # Register the auth blueprint
+    app.register_blueprint(quote_bp) # Register the quote blueprint
 
     db.init_app(app)
     migrate.init_app(app, db)
     jwt.init_app(app)
     bcrypt.init_app(app)
-
-    
-
-    with app.app_context():
-        db.create_all()
-
-    app.register_blueprint(service_bp)
-    app.register_blueprint(auth_bp)
-    app.register_blueprint(quote_bp)
 
     return app
