@@ -2,11 +2,8 @@
 
 import axios from 'axios';
 
-const axiosClient = axios.create({  //create an instance of axios with default configuration
-  baseURL: 'http://localhost:5000/api',
-  headers: {
-    'Content-Type': 'application/json',
-  },
+const api = axios.create({  //create an instance of axios with default configuration
+  baseURL: import.meta.env.VITE_API_BASE_URL   //set the base URL for API requests, using an environment variable or defaulting to localhost
 });
 
-export default axiosClient;
+export default api;  //export the configured axios instance for use in other parts of the application
