@@ -1,4 +1,4 @@
-# ICG-Captital-Africa# (Project Name)
+# ICG-Captital-Africa 
 
 #### Date, 2026/09/25
 
