@@ -32,6 +32,8 @@ npm run dev
 ```
 
 # Live Link
+front-end: https://icg-captital-africa.vercel.app/
+backend : https://icg-backend-cppd.onrender.com
 
 
 ## Technologies used
