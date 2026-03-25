@@ -156,4 +156,6 @@ function Home() {
   )
 }
 
+console.log("API URL:", import.meta.env.VITE_API_BASE_URL)  // Log the API base URL to verify it's being read correctly
+
 export default Home
