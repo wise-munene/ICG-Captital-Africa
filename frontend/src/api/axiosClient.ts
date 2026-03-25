@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 const api = axios.create({  //create an instance of axios with default configuration
-  baseURL: import.meta.env.VITE_API_BASE_URL   //set the base URL for API requests, using an environment variable or defaulting to localhost
+  baseURL: "https://icg-backend-cppd.onrender.com/api"  //set the base URL for API requests, using an environment variable or defaulting to localhost
 });
 
 export default api;  //export the configured axios instance for use in other parts of the application
